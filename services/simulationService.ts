@@ -49,11 +49,17 @@ export const calculateSimulation = (
     let basePaceSecondsPerKm = timeStringToSeconds(plan.pacesBySlope[slopeCategory]);
 
     // Apply fatigue model
-    if (currPoint.dist > plan.fatigue.startKm && plan.fatigue.kmsPerInterval > 0) {
-      const fatigueTranches = Math.floor((currPoint.dist - plan.fatigue.startKm) / plan.fatigue.kmsPerInterval);
-      const fatigueSeconds = fatigueTranches * plan.fatigue.lossSeconds;
-      basePaceSecondsPerKm += fatigueSeconds;
+    let totalFatigueSeconds = 0;
+    if (plan.fatigue) {
+      plan.fatigue.forEach(rule => {
+        if (currPoint.dist > rule.startKm && rule.kmsPerInterval > 0) {
+          const fatigueTranches = Math.floor((currPoint.dist - rule.startKm) / rule.kmsPerInterval);
+          totalFatigueSeconds += fatigueTranches * rule.lossSeconds;
+        }
+      });
     }
+    basePaceSecondsPerKm += totalFatigueSeconds;
+
 
     const segmentTimeSeconds = basePaceSecondsPerKm * segmentDistKm;
     totalSeconds += segmentTimeSeconds;

@@ -16,7 +16,8 @@ export interface PacesBySlope {
   [key: string]: string; // "pente_0_3": "6:00"
 }
 
-export interface Fatigue {
+export interface FatigueRule {
+  id: string;
   startKm: number;
   lossSeconds: number;
   kmsPerInterval: number;
@@ -24,7 +25,7 @@ export interface Fatigue {
 
 export interface RacePlan {
   pacesBySlope: PacesBySlope;
-  fatigue: Fatigue;
+  fatigue: FatigueRule[];
 }
 
 export interface Waypoint {

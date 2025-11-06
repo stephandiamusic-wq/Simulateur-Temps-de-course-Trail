@@ -9,11 +9,12 @@ export const DEFAULT_RACE_PLAN: RacePlan = {
     'descente_1_8': '05:45',
     'descente_9_plus': '07:00',
   },
-  fatigue: {
+  fatigue: [{
+    id: 'default-fatigue-1',
     startKm: 60,
     lossSeconds: 15,
     kmsPerInterval: 10,
-  },
+  }],
 };
 
 export const SLOPE_CATEGORIES = [
