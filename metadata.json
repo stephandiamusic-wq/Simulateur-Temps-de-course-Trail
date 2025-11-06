@@ -1,0 +1,5 @@
+{
+  "name": "Trail Running Race Simulator",
+  "description": "An application for trail runners to upload a GPX file, define a race plan with pace and fatigue strategies, and generate a visual roadbook with split times and an interactive elevation profile.",
+  "requestFramePermissions": []
+}
